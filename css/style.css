@@ -1,0 +1,544 @@
+/* ==========================================================
+   CFW Elétrica - style.css
+   Estratégia: mobile-first (base = celular; media queries
+   ampliam o layout para tablet e computador)
+   ========================================================== */
+
+/* 1. VARIÁVEIS ------------------------------------------- */
+:root {
+  /* paleta enviada pelo cliente */
+  --preto-azul: #000814;
+  --azul-escuro: #001D3D;
+  --azul: #003566;
+  --amarelo: #FFC300;
+  --amarelo-claro: #FFD60A;
+  --creme: #F3F2DB;
+  --ciano: #0FB8CF;
+
+  --branco: #FFFFFF;
+  --linha: #DCDCCB;
+  --texto: #000814;
+  --texto-suave: #4A5568;
+  --erro: #B3261E;
+
+  --fonte-titulo: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --fonte-texto: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --raio: 6px;
+  --largura: 72rem;
+}
+
+/* 2. BASE ------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte-texto);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--texto);
+  background: var(--branco);
+}
+
+img,
+svg,
+iframe {
+  max-width: 100%;
+}
+
+a {
+  color: var(--azul);
+}
+
+:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--azul-escuro);
+}
+
+h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--azul-escuro);
+}
+
+p {
+  margin: 0 0 1rem;
+  max-width: 62ch;
+}
+
+.container {
+  width: min(100% - 2.5rem, var(--largura));
+  margin-inline: auto;
+}
+
+.pular-conteudo {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  padding: 0.6rem 1rem;
+  background: var(--azul-escuro);
+  color: var(--branco);
+  border-radius: var(--raio);
+  z-index: 30;
+}
+
+.pular-conteudo:focus {
+  top: 1rem;
+}
+
+/* 3. BOTÕES ---------------------------------------------- */
+.botao {
+  display: inline-block;
+  padding: 0.85rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: var(--raio);
+  font: 600 1rem/1.2 var(--fonte-texto);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.botao--principal {
+  background: var(--amarelo);
+  color: var(--azul-escuro);
+}
+
+.botao--principal:hover {
+  background: var(--amarelo-claro);
+}
+
+.botao--contorno {
+  color: var(--branco);
+  border-color: var(--creme);
+}
+
+.botao--contorno:hover {
+  border-color: var(--amarelo);
+}
+
+/* 4. TOPO E MENU ----------------------------------------- */
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--branco);
+  border-bottom: 1px solid var(--linha);
+}
+
+.topo__barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.75rem;
+}
+
+.marca {
+  display: block;
+}
+
+.marca__logo {
+  display: block;
+  height: 3.5rem;
+  width: auto;
+}
+
+/* botão hambúrguer (só aparece no celular) */
+.menu-botao {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0 0.6rem;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.menu-botao__linha {
+  display: block;
+  height: 2px;
+  background: var(--azul-escuro);
+}
+
+/* menu no celular: escondido até abrir */
+.menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--branco);
+  border-bottom: 1px solid var(--linha);
+}
+
+.menu--aberto {
+  display: block;
+}
+
+.menu ul {
+  margin: 0;
+  padding: 0.5rem 1.25rem 1rem;
+  list-style: none;
+}
+
+.menu a {
+  display: block;
+  padding: 0.75rem 0;
+  color: var(--texto);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.menu a:hover {
+  color: var(--azul);
+}
+
+.menu a[aria-current="true"] {
+  color: var(--azul);
+  font-weight: 600;
+}
+
+/* 5. HERO ------------------------------------------------ */
+.hero {
+  padding-block: 3rem 3.5rem;
+  background: var(--azul-escuro);
+  color: var(--branco);
+}
+
+.hero :focus-visible {
+  outline-color: var(--amarelo);
+}
+
+.hero__grade {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.hero h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.6rem, 8vw, 4.5rem);
+  color: var(--branco);
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: var(--creme);
+}
+
+.hero__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.hero__arte {
+  width: 100%;
+  max-width: 20rem;
+  height: auto;
+  margin-inline: auto;
+}
+
+/* cores das formas do desenho (inspirado na arte do cliente) */
+.tom-1 {
+  fill: var(--azul);
+}
+
+.tom-2 {
+  fill: var(--azul);
+  fill-opacity: 0.35;
+}
+
+.arte-ciano {
+  fill: var(--ciano);
+}
+
+.arte-amarelo {
+  fill: var(--amarelo);
+}
+
+/* 6. SEÇÕES ---------------------------------------------- */
+.secao {
+  padding-block: 4rem;
+}
+
+.secao--creme {
+  background: var(--creme);
+}
+
+.secao__intro {
+  margin-bottom: 2.5rem;
+  color: var(--texto-suave);
+}
+
+/* 6.1 A empresa */
+.empresa {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.empresa__texto h3 {
+  margin-top: 2rem;
+}
+
+.normas {
+  margin: 0;
+  align-self: start;
+}
+
+.normas__item {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--linha);
+}
+
+.normas__item:last-child {
+  border-bottom: 1px solid var(--linha);
+}
+
+.normas dt {
+  font-family: var(--fonte-titulo);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--azul);
+}
+
+.normas dd {
+  margin: 0.25rem 0 0;
+  color: var(--texto-suave);
+}
+
+/* 6.2 Serviços */
+.servicos {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.grupo {
+  padding-top: 1.25rem;
+  border-top: 3px solid var(--azul);
+}
+
+.grupo ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.grupo li {
+  margin-bottom: 0.4rem;
+}
+
+.grupo li::marker {
+  color: var(--amarelo);
+}
+
+.servicos__nota {
+  margin: 2.5rem 0 0;
+  color: var(--texto-suave);
+}
+
+/* 6.3 Orçamento (formulário) */
+.orcamento {
+  display: grid;
+  gap: 2rem;
+}
+
+.form {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.campo input,
+.campo textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  font: inherit;
+  color: var(--texto);
+  background: var(--branco);
+  border: 1px solid #7A8796;
+  border-radius: var(--raio);
+}
+
+.campo textarea {
+  resize: vertical;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+  border-color: var(--azul);
+}
+
+.campo input[aria-invalid="true"],
+.campo textarea[aria-invalid="true"] {
+  border-color: var(--erro);
+}
+
+/* altura fixa: o layout não "pula" quando o erro aparece ou some */
+.campo__erro {
+  margin: 0.25rem 0 0;
+  min-height: 1.4rem;
+  font-size: 0.95rem;
+  line-height: 1.4rem;
+  color: var(--erro);
+}
+
+.form .botao {
+  justify-self: start;
+}
+
+.form__aviso {
+  margin: 0;
+  color: var(--texto-suave);
+}
+
+/* 6.4 Contato */
+.contato {
+  display: grid;
+  gap: 2rem;
+}
+
+.contato address {
+  font-style: normal;
+}
+
+.contato__mapa {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 0;
+  border-radius: var(--raio);
+  background: var(--linha);
+}
+
+/* 7. RODAPÉ ---------------------------------------------- */
+.rodape {
+  padding-block: 1.75rem;
+  background: var(--preto-azul);
+  color: var(--creme);
+  font-size: 0.95rem;
+}
+
+.rodape p {
+  margin: 0;
+  max-width: none;
+}
+
+/* 8. TABLET (a partir de 768px) -------------------------- */
+@media (min-width: 48rem) {
+  .menu-botao {
+    display: none;
+  }
+
+  .menu {
+    display: block;
+    position: static;
+    background: none;
+    border: 0;
+  }
+
+  .menu ul {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0;
+  }
+
+  .menu a {
+    padding: 0.4rem 0;
+  }
+
+  .menu a[aria-current="true"] {
+    border-bottom-color: var(--amarelo);
+  }
+
+  .hero {
+    padding-block: 4.5rem 5rem;
+  }
+
+  .secao {
+    padding-block: 5rem;
+  }
+
+  .servicos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+
+/* 9. COMPUTADOR (a partir de 1024px) --------------------- */
+@media (min-width: 64rem) {
+  .menu ul {
+    gap: 2.25rem;
+  }
+
+  .hero__grade {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 4rem;
+  }
+
+  .hero__arte {
+    max-width: 26rem;
+  }
+
+  .empresa {
+    grid-template-columns: 1.3fr 1fr;
+    gap: 5rem;
+  }
+
+  .orcamento {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+  }
+
+  .contato {
+    grid-template-columns: 1fr 1.3fr;
+    gap: 4rem;
+    align-items: center;
+  }
+}
+
+/* 10. ACESSIBILIDADE: reduzir movimento ------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .botao {
+    transition: none;
+  }
+}
